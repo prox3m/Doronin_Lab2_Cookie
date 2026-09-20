@@ -99,6 +99,7 @@ header {
     width: 100%;
     margin-bottom: 14px;
     display: block;
+    border-radius: 50%;
 }
 
 .facts {
