@@ -124,5 +124,19 @@
         <footer>
             <p>Последнее обновление: 20.09.2026</p>
         </footer>
+
+        <script>
+            const btn = document.querySelector('.theme-toggle');
+
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                const isDark = document.body.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        </script>
     </body>
 </html>
