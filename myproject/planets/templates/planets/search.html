@@ -1,0 +1,36 @@
+{% extends 'planets/base.html' %}
+
+{% block content %}
+
+    <div class="article-text">
+        <h2>Поиск по планетам</h2>
+
+        {% if query %}
+            <p class="description">
+                По запросу «{{ query }}» найдено: {{ results|length }}
+            </p>
+
+            {% if results %}
+                <ul class="search-results">
+                    {% for item in results %}
+                        <h3>
+                            <a href="{% url 'planet_detail' slug=item.slug %}">
+                                {{ item.name }}
+                            </a>
+                        </h3>
+                        
+                        <p>{{ item.lead }}</p>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Ничего не найдено. Попробуйте другое название.</p>
+            {% endif %}
+        {% else %}
+            <p class="description">
+                Введите название планеты в строке поиска сверху —
+                например, «Марс» или «юпитер».
+            </p>
+        {% endif %}
+    </div>
+
+{% endblock %}

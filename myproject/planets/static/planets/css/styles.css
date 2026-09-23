@@ -160,3 +160,70 @@ body.dark .facts th {
 body.dark .facts td {
     background: rgba(255, 255, 255, 0.1);
 }
+
+/**/
+.search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-form input {
+    padding: 6px 12px;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 14px;
+    background: wheat;
+    color: black;
+}
+
+.search-form button {
+    padding: 6px 14px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #344053;
+    color: wheat;
+    cursor: pointer;
+}
+
+/**/
+.search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.search-results h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+}
+
+.search-results a {
+    text-decoration: underline;
+}
+
+/**/
+body.dark .search-form input {
+    background: #1b2433;
+    color: wheat;
+    border-color: wheat;
+}
+
+body.dark .search-form button {
+    background: wheat;
+    color: black;
+    border-color: wheat;
+}
+
+body.dark .search-results li {
+    border-color: rgba(255, 255, 255, 0.2)
+}
+
+body.dark .search-results a {
+    color: wheat;
+}

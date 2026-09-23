@@ -12,6 +12,12 @@
 
         <header>
             <p class="logo-name">Космопедия</p>
+
+            <form action="{% url 'search' %}" method="get" class="search-form">
+                <input type="text" name="query" placeholder="Найти планету..." value="{{ query|default:'' }}">
+                <button type="submit">Найти</button>
+            </form>
+
             <button class="theme-toggle">Сменить тему</button>
         </header>
 
