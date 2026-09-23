@@ -1,0 +1,42 @@
+{% extends 'planets/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="article-text">
+        <h2>{{ planet.name }}</h2>
+
+        <p class="description">{{ planet.lead }}</p>
+
+        <nav class="navigation">
+            <h3>Содержание</h3>
+            <ol>
+                {% for section in planet.sections %}
+                    <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+
+        {% for section in planet.sections %}
+            <section id="{{ section.id }}">
+                <h3>{{ section.title }}</h3>
+                {% for paragraph in section.paragraphs %}
+                    <p>{{ paragraph }}</p>
+                {% endfor %}
+            </section>
+        {% endfor %}
+    </div>
+
+    <div class="short-form">
+        <img src="{% static planet.image %}" alt="{{ planet.name }}">
+
+        <p class="short-desc">{{ planet.short_desc }}</p>
+
+        <table class="facts">
+            {% for label, value in planet.facts %}
+                <tr><th>{{ label }}</th><td>{{ value }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

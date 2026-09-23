@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Космопедия — {{ planet.name }}</title>
+        <link rel="stylesheet" href="{% static 'planets/css/styles.css' %}">
+    </head>
+
+    <body>
+
+        <header>
+            <p class="logo-name">Космопедия</p>
+            <button class="theme-toggle">Сменить тему</button>
+        </header>
+
+        <div class="articles">
+            <h2>Статьи</h2>
+            <ul>
+                {% for slug, name in menu %}
+                    <li>
+                        <a href="{% url 'planet_detail' slug=slug %}"
+                           {% if slug == current_slug %}class="active"{% endif %}>
+                            {{ name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            <p>Последнее обновление: 20.09.2026</p>
+        </footer>
+
+        <script src="{% static 'planets/js/script.js' %}"></script>
+    </body>
+</html>
