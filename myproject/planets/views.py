@@ -1,16 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
+from django.http import Http404
+
 from .data import PLANETS, PLANETS_ORDER
 from .forms import SearchForm
 
 def index(request):
+    last = request.COOKIES.get('last_planet')
 
-    first_slug = PLANETS_ORDER[0]
-    return planet_detail(request, first_slug)
+    if last and last in PLANETS:
+        return redirect('planet_detail', slug=last)
+    
+    return planet_detail(request, PLANETS_ORDER[0])
 
 def planet_detail(request, slug):
 
     if slug not in PLANETS:
-        return render(request, 'planets/404.html', status=404)
+        raise Http404('Планета не наидена')
     
     planet = PLANETS[slug]
     menu = [(s, PLANETS[s]['name']) for s in PLANETS_ORDER]
@@ -21,14 +26,13 @@ def planet_detail(request, slug):
         'current_slug': slug,
     }
     
-    return render(request, 'planets/planet.html', context)
+    response = render(request, 'planets/planet.html', context)
+
+    response.set_cookie('last_planet', slug, max_age = 60 * 60 * 24 * 30)
+    
+    return response
 
 def search(request):
-    """
-    Страница поиска. Принимает GET-параметр ?query=..
-    Ищет планеты по вхождению подстройки в название.
-    """
-
     form = SearchForm(request.GET)
     results = []
     query = ''

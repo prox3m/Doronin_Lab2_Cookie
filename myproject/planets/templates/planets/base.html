@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'planets/css/styles.css' %}">
     </head>
 
-    <body>
+    <body class="{% if request.COOKIES.theme == 'dark' %}dark{% endif %}">
 
         <header>
             <p class="logo-name">Космопедия</p>
